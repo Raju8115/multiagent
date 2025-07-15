@@ -5,6 +5,10 @@ import uuid
 
 app = Flask(__name__)
 
+@app.route("/")
+def hello():
+    return "Flask app is live!"
+
 @app.route("/update-customer", methods=["POST"])
 def update_customer():
     data = request.get_json()
@@ -105,4 +109,5 @@ def make_payment():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=3000)
+    port = int(os.environ.get("PORT", 5000)) 
+    app.run(host="0.0.0.0", port=port)
