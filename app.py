@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from db_connector import db_conn
 import ibm_db
-import uuid
+import uuid, os
 
 app = Flask(__name__)
 
