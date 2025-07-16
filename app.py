@@ -14,7 +14,7 @@ def update_customer():
     data = request.get_json()
     print("Received data:", data)
 
-    customer_id = data.get("customer_id")
+    customer_id = "4388e24f-f209-4633-951e-62f242658fd9"
     if not customer_id:
         return jsonify({"error": "Missing required field: customer_id"}), 400
 
