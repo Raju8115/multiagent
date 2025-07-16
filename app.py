@@ -12,10 +12,14 @@ def hello():
 @app.route("/update-customer", methods=["POST"])
 def update_customer():
     data = request.get_json()
-    customer_id = data["customer_id"]
+    print("Received data:", data)
+
+    customer_id = data.get("customer_id")
+    if not customer_id:
+        return jsonify({"error": "Missing required field: customer_id"}), 400
+
     new_email = data.get("new_email")
     new_phone = data.get("new_phone")
-    print(new_email)
     conn = db_conn()
     try:
         fetch_stmt = ibm_db.prepare(conn, "SELECT MOBILE, EMAIL FROM customer_master WHERE customer_id = ?")
